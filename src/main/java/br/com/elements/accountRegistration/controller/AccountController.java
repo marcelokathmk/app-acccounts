@@ -25,7 +25,7 @@ public class AccountController extends BaseController{
 	
 	@GetMapping("/login")
     public ModelAndView login(String success) {
-		ModelAndView mv = new ModelAndView("/login");
+		ModelAndView mv = new ModelAndView("login");
 		addSuccess(success, mv);
 		return mv;
     }
@@ -37,7 +37,7 @@ public class AccountController extends BaseController{
 	
 	@GetMapping("/")
     public ModelAndView defaultUrl(AccountDto account, String errors, String success) {
-		ModelAndView mv = new ModelAndView("/home");
+		ModelAndView mv = new ModelAndView("home");
 		
 		addErrors(errors, mv);
 		addSuccess(success, mv);
@@ -65,7 +65,7 @@ public class AccountController extends BaseController{
 	}
 	
 	private ModelAndView register(AccountDto account, String errors) {
-		ModelAndView mv = new ModelAndView("/register");
+		ModelAndView mv = new ModelAndView("register");
 		addErrors(errors, mv);
 		mv.addObject("account", account);
 		
