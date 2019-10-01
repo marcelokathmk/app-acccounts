@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" th:href="@{/css/main.css}" href="../css/main.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+	<script type="text/javascript">
+    	$("#telephone").mask("+00 (00) 00000-0000");
+ 	</script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" th:text="'Welcome ' + ${account.name}"></a>
+    </div>
+    <div id="navbar" class="navbar-form navbar-right">
+      <a class="btn btn-primary" th:href="@{/logout}">Sign Out</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+	<div class="row" style="margin-top:65px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form th:action="@{/updateAccount}" th:object="${account}" method="post">
+                <fieldset>
+                	<div th:if="${errors}">
+                        <div class="alert alert-danger">
+                           	<label th:text="${errors}" ></label>
+                        </div>
+                    </div>
+                    <div th:if="${success}">
+                        <div class="alert alert-success">
+                           	<label th:text="${success}" ></label>
+                        </div>
+                    </div>	
+                
+                	<input type="hidden" name="id" id="id" th:field="*{id}"/>
+                	<div class="form-group">
+                		<label for="name">Name</label>
+                        <input type="text" name="name" id="name" th:field="*{name}" class="form-control input-lg" placeholder="Name" maxlength="50" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                		<label for="dateBirth">Date Birth</label>
+                        <input type="date" name="dateBirth" id="dateBirth" th:field="*{dateBirth}" class="form-control input-lg" placeholder="Date Birth" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                		<label for="telephone">Telephone</label>
+                        <input type="text" name="telephone" id="telephone" th:field="*{telephone}" class="form-control input-lg" placeholder="Telephone"/>
+                    </div>
+                    <div class="form-group">
+                		<label for="address">Address</label>
+                        <input type="text" name="address" id="address" th:field="*{address}" class="form-control input-lg" placeholder="Address" maxlength="50"/>
+                    </div>
+                    <div class="form-group">
+                		<label for="email">Email</label>
+                        <input type="email" name="email" id="email" th:field="*{email}" class="form-control input-lg" placeholder="Email" maxlength="40" readonly="readonly"/>
+                    </div>
+                    
+                    <h3>Change your password</h3>
+                    
+                    <div class="form-group">
+                		<label for="password">Password</label>
+                        <input type="password" name="password" id="password" th:field="*{password}" class="form-control input-lg" placeholder="Password" />
+                    </div>
+                    <div class="form-group">
+                		<label for="confirmPassword">Confirm Password</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" th:field="*{confirmPassword}" class="form-control input-lg" placeholder="Confirm Password"/>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Save"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
